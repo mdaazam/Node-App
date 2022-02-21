@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/homepage.css">
+     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"> 
+  <link href='https://fonts.googleapis.com/css?family=Shadows+Into+Light|Raleway' rel='stylesheet' type='text/css'>
+    
+    <title>Items</title>
+</head>
+
+    <body>
+     
+        {{>navbar}}
+ 
+    
+
+<section id="portfolio">
+  <div class="starcontainerportfolio">
+    <h2>You can Buy</h2>
+    <i class="fa fa-star fa-2x"></i>
+    <hr class="starportfolio"></hr>
+  </div>
+ <div id="container">
+
+
+    <div class="box">
+        <img src="https://unsplash.imgix.net/5/night-city.jpg?q=75&fm=jpg&s=17d530aa2cd2080b1aba21843cc5f433" alt="Responsive image" />
+     
+             <p><a href="https://www.thinkful.com/">Thinkful</a> project base "Build a Landing Page from Scratch" was a sample website built from previous lesson plans. </p>
+             <button class="btn" id="rzp-button1">Rs 500</button>
+
+    </div>
+    <div class="box">
+        <img src="https://unsplash.imgix.net/5/night-city.jpg?q=75&fm=jpg&s=17d530aa2cd2080b1aba21843cc5f433" alt="Responsive image" />
+     
+             <p>Diamond Cutz is a barber shop based out of Ansonia CT. Site was build with custom graphics, HTML and CSS.</p>
+              <button class="btn" id="rzp-button2">Rs 1000</button>
+    </div>
+    <div class="box">
+        <img src="https://unsplash.imgix.net/5/night-city.jpg?q=75&fm=jpg&s=17d530aa2cd2080b1aba21843cc5f432" class="img-responsive img-thumbnail" alt="Responsive image" />
+    
+      <p>Hack the Times was a <a href="https://www.thinkful.com/">Thinkful</a> project that required me to hack the New York Times website using Chrome. </p>
+       <button class="btn" id="rzp-button3">Rs 5000</button>
+    </div>
+    
+</div>
+</section>
+
+<!-- ***** Footer section ***** -->
+
+<footer class="content-footer">
+  <p>Say hi to me on these social networks:</p>
+    <ul class="social">
+      <li><a href="https://github.com/md-azam-chqbook"><i class="fa fa-github-square fa-3x"></i></a></li>
+      <li><a href="https://codepen.io/mdazam"><i class="fa fa-codepen fa-3x"></i></a></li>
+      <li><a href="https://twitter.com/mdazam"><i class="fa fa-twitter-square fa-3x"></i></a></li>
+      <li><a href="https://www.linkedin.com/profile"><i class="fa fa-linkedin-square fa-3x"></i></a></li>
+      <li><a href="https://dribbble.com/mdazam"><i class="fa fa-dribbble fa-3x"></i></a></li>
+    </ul>
+  <p>Cover Image via <a href="https://google.com/">Md Azam</a></p>
+</footer>
+<script src="https://unpkg.com/axios@0.25.0/dist/axios.min.js"></script>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+ <script>
+    axios.post('/order1').then((resp) => {
+      console.log("Response Data",resp.data);
+      var options = {
+          "key": "rzp_test_rv8z7NFhQ8r0XN", // Enter the Key ID generated from the Dashboard
+          "amount": resp.data.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+          "currency": "INR",
+          "name": "Book Shop",
+          "description": "Test Transaction",
+          "image": "https://img.freepik.com/free-vector/connect-logo-technology-template-design-vector_357490-236.jpg?size=338&amp;ext=jpg",
+          "order_id": resp.data.id, //This is a sample Order ID. Pass the `id` obtained in the previous step
+          "handler": function (response){
+              alert(response.razorpay_payment_id);
+              alert(response.razorpay_order_id);
+              alert(response.razorpay_signature)
+          },
+          
+          "notes": {
+              "address": "Razorpay Corporate Office"
+          },
+          "theme": {
+              "color": "#3399cc"
+          }
+      };
+
+var rzp1 = new Razorpay(options);
+rzp1.on('payment.failed', function (response){
+        alert(response.error.code);
+        alert(response.error.description);
+        alert(response.error.source);
+        alert(response.error.step);
+        alert(response.error.reason);
+        alert(response.error.metadata.order_id);
+        alert(response.error.metadata.payment_id);
+});
+document.getElementById('rzp-button1').onclick = function(e){
+    rzp1.open();
+    e.preventDefault();
+}
+    }).catch((error) => {
+    console.log("error---",error);
+  });
+
+axios.post('/order2').then((resp) => {
+      console.log("Response Data",resp.data);
+      var options = {
+          "key": "rzp_test_rv8z7NFhQ8r0XN", // Enter the Key ID generated from the Dashboard
+          "amount": resp.data.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+          "currency": "INR",
+          "name": "Book Shop",
+          "description": "Test Transaction",
+          "image": "https://img.freepik.com/free-vector/connect-logo-technology-template-design-vector_357490-236.jpg?size=338&amp;ext=jpg",
+          "order_id": resp.data.id, //This is a sample Order ID. Pass the `id` obtained in the previous step
+          "handler": function (response){
+              alert(response.razorpay_payment_id);
+              alert(response.razorpay_order_id);
+              alert(response.razorpay_signature)
+          },
+          
+          "notes": {
+              "address": "Razorpay Corporate Office"
+          },
+          "theme": {
+              "color": "#3399cc"
+          }
+      };
+
+var rzp2 = new Razorpay(options);
+rzp2.on('payment.failed', function (response){
+        alert(response.error.code);
+        alert(response.error.description);
+        alert(response.error.source);
+        alert(response.error.step);
+        alert(response.error.reason);
+        alert(response.error.metadata.order_id);
+        alert(response.error.metadata.payment_id);
+});
+document.getElementById('rzp-button2').onclick = function(e){
+    rzp2.open();
+    e.preventDefault();
+}
+    }).catch((error) => {
+    console.log("error---",error);
+  });
+
+  axios.post('/order3').then((resp) => {
+      console.log("Response Data",resp.data);
+      var options = {
+          "key": "rzp_test_rv8z7NFhQ8r0XN", // Enter the Key ID generated from the Dashboard
+          "amount": resp.data.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+          "currency": "INR",
+          "name": "Book Shop",
+          "description": "Test Transaction",
+          "image": "https://img.freepik.com/free-vector/connect-logo-technology-template-design-vector_357490-236.jpg?size=338&amp;ext=jpg",
+          "order_id": resp.data.id, //This is a sample Order ID. Pass the `id` obtained in the previous step
+          "handler": function (response){
+              alert(response.razorpay_payment_id);
+              alert(response.razorpay_order_id);
+              alert(response.razorpay_signature)
+          },
+          
+          "notes": {
+              "address": "Razorpay Corporate Office"
+          },
+          "theme": {
+              "color": "#3399cc"
+          }
+      };
+
+var rzp3 = new Razorpay(options);
+rzp3.on('payment.failed', function (response){
+        alert(response.error.code);
+        alert(response.error.description);
+        alert(response.error.source);
+        alert(response.error.step);
+        alert(response.error.reason);
+        alert(response.error.metadata.order_id);
+        alert(response.error.metadata.payment_id);
+});
+document.getElementById('rzp-button3').onclick = function(e){
+    rzp3.open();
+    e.preventDefault();
+}
+    }).catch((error) => {
+    console.log("error---",error);
+  });
+
+  </script>
+</body>
+
+
+</html>

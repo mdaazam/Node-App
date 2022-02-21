@@ -1,0 +1,62 @@
+{{!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <nav class= "navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+        <a class="navbar-brand text-white" href ="#">Demo Company</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle-navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button> 
+        
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class ="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link text-white" href="/">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="/login">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="/register">Registration</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+ --}}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ pageTitle }}</title>
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+
+<body>
+    <header class="main-header">
+        <nav class="main-header__nav">
+            <ul class="main-header__item-lists">
+                <li class="main-header__item"><a class="{{#if activeShop }}active{{/if}}" href="/">Shop</a></li>
+                <li class="main-header__item"><a class="{{#if activeLogin }}active{{/if}}" href="/login">Login</a></li>
+                 <li class="main-header__item"><a class="{{#if activeRegister }}active{{/if}}" href="/register">Register</a></li>
+                 <li class="main-header__item"><a class="{{#if activeSecret }}active{{/if}}" href="/secret">Profile</a></li>
+            </ul>
+        </nav>
+    </header>
+   {{{ body }}}
+</body>
+</html>
+
+</body>
+</html>

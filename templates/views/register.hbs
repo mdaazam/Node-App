@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<!-- Created By CodingLab - www.codinglabweb.com -->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <!---<title> Responsive Registration Form | CodingLab </title>--->
+    <link rel="stylesheet" href="css/registration.css">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   </head>
+   <title>Registration</title>
+<body onload="disableSubmit()">
+  <div class="container">
+    <div class="title">Registration</div>
+    <div class="content">
+      <form action="/register" method="POST">
+        <div class="user-details">
+          <div class="input-box">
+            <span class="details">First Name</span>
+            <input name="firstName" type="text" placeholder="Enter your First Name" id:"fname" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Last Name</span>
+            <input name="lastName" type="text" placeholder="Enter your Last Name" id:"lname" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Email</span>
+            <input name="email" type="email" placeholder="Enter your email" id:"email" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Phone Number</span>
+            <input name="phone" type="text" placeholder="Enter your number" id:"number" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Password</span>
+            <input  name="password" type="password" placeholder="Enter your password" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Confirm Password</span>
+            <input name="cPassword" type="password" placeholder="Confirm your password" required>
+          </div>
+          <div class="input-box">
+            <span class="details">
+              <label for="States">Choose a State:</label>
+            </span>
+            <select class="select-box" name="state" id="countrySelect" size="1" onchange="makeSubmenu(this.value)">
+               <option value="" disabled selected>Choose State</option>
+              <option value="Odisha">Odisha</option>
+              <option value="Maharashtra">Maharashtra</option>
+              <option value="West Bengal">West Bengal</option>
+            </select>
+          </div>
+           <div class="input-box">
+            <span class="details">
+              <label for="States">Choose a City:</label>
+            </span>
+            <select class="select-box" name="city" id="citySelect" size="1" >
+              <option value="" disabled selected>Choose City</option>
+               <option value="Odisha">Odisha</option>
+              <option value="Maharashtra">Maharashtra</option>
+              <option value="West Bengal">West Bengal</option>
+            
+            </select>
+          </div>
+        </div>
+        <div class="gender-details">
+          <input type="radio" name="gender" value="Male" id="dot-1">
+          <input type="radio" name="gender" value="Female" id="dot-2">
+          <input type="radio" name="gender" value="Prefer not to say" id="dot-3">
+          <span class="gender-title">Gender</span>
+          <div class="category">
+            <label for="dot-1">
+            <span class="dot one"></span>
+            <span class="gender">Male</span>
+          </label>
+          <label for="dot-2">
+            <span class="dot two"></span>
+            <span class="gender">Female</span>
+          </label>
+          <label for="dot-3">
+            <span class="dot three"></span>
+            <span class="gender">Prefer not to say</span>
+            </label>
+          </div>
+        </div>
+         <div class="tacbox">
+          <input id="terms" class="checkbox" type="checkbox" onchange="activateButton(this)"/>
+          <label for="checkbox"> I agree to these <a href="#">Terms and Conditions</a>.</label>
+        </div>
+        <div class="button" id="disable">
+          <input type="submit" name="submit" id="submit" value="Register">
+        </div>
+       
+        <div>
+            <h4>Already Registered ? <a class="nav-link text-white" href="/login">Login</a></h4>
+        </div>
+      </form>
+    </div>
+  </div>
+<script>
+  function disableSubmit(){
+    document.getElementById("submit").disabled = true
+  }
+  function activateButton(element){
+    if(element.checked){
+      document.getElementById("submit").disabled = false;
+    }
+    else{
+      document.getElementById("submit").disabled = true
+    }
+  }
+
+  let citiesByState = {
+    {{!-- Odisha: ["Bhubaneswar","Puri","Cuttack"],
+    Maharashtra: ["Mumbai","Pune","Nagpur"],
+    West Bengal: ["Kolkata","Asansol","Durgapur"]
+    }
+    function makeSubmenu(value) {
+    if(value.length==0) document.getElementById("citySelect").innerHTML = "<option></option>";
+    else {
+    let citiesOptions = "";
+    for(cityId in citiesByState[value]) {
+    citiesOptions+="<option>"+citiesByState[value][cityId]+"</option>";
+    }
+    document.getElementById("citySelect").innerHTML = citiesOptions;
+    }
+    }
+    function displaySelected() { let country = document.getElementById("countrySelect").value;
+    let city = document.getElementById("citySelect").value;
+    alert(country+"\n"+city);
+    } --}}
+    function resetSelection() {
+    document.getElementById("countrySelect").selectedIndex = 0;
+    document.getElementById("citySelect").selectedIndex = 0;
+    document.getElementById("fname") ="";
+    document.getElementById("lname") ="";
+    document.getElementById("email") ="";
+    document.getElementById("number") ="";
+    document.getElementById("password") ="";
+    document.getElementById("cpassword") ="";
+    }
+</script>
+</body>
+</html>
